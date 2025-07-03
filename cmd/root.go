@@ -17,8 +17,8 @@ var millisFlag bool
 
 var rootCmd = &cobra.Command{
 	Use:   "timeconv [timestamp]",
-	Short: "Simple unix timestamp converter",
-	Long:  `Simple unix timestamp converter - converts unix timestamp to human readable date format or vice versa`,
+	Short: "简单的unix时间戳转换工具",
+	Long:  `简单的unix时间戳转换工具 - 支持unix时间戳与人类可读日期格式之间的双向转换`,
 	Args:  cobra.MaximumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// 检查是否提供了date参数
@@ -26,7 +26,7 @@ var rootCmd = &cobra.Command{
 			// 转换日期为时间戳
 			result, err := internal.ConvertDateToTimestamp(dateFlag, millisFlag)
 			if err != nil {
-				fmt.Printf("Error: %v\n", err)
+				fmt.Printf("错误: %v\n", err)
 				os.Exit(1)
 			}
 			fmt.Println(result)
@@ -35,14 +35,15 @@ var rootCmd = &cobra.Command{
 
 		// 如果没有date参数，处理时间戳转换
 		if len(args) == 0 {
-			fmt.Println("请提供时间戳或使用 -date 参数提供日期")
-			os.Exit(1)
+			// 没有参数时显示帮助信息
+			cmd.Help()
+			return
 		}
 
 		timestamp := args[0]
 		result, err := internal.ConvertTimestamp(timestamp)
 		if err != nil {
-			fmt.Printf("Error: %v\n", err)
+			fmt.Printf("错误: %v\n", err)
 			os.Exit(1)
 		}
 
