@@ -1,4 +1,4 @@
-module github.com/n8sPxD/tsconv-util
+module github.com/n8sPxD/ez-timestamp-conv
 
 go 1.24.4
 

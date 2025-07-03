@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/n8sPxD/tsconv-util/internal"
+	"github.com/n8sPxD/ez-timestamp-conv/internal"
 
 	"github.com/spf13/cobra"
 )
