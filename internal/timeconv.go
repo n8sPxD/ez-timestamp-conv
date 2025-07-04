@@ -22,8 +22,8 @@ func ConvertTimestamp(timestampStr string) (string, error) {
 		t = time.Unix(timestamp, 0)
 	}
 
-	// 格式化为指定格式 (YYYY-MM-DD HH:MM:SS)
-	return t.Format("2006-01-02 15:04:05"), nil
+	// 转换为本地时区并格式化为指定格式 (YYYY-MM-DD HH:MM:SS)
+	return t.Local().Format("2006-01-02 15:04:05"), nil
 }
 
 // ConvertDateToTimestamp 将日期时间字符串转换为unix timestamp
@@ -38,9 +38,12 @@ func ConvertDateToTimestamp(dateStr string, outputMillis bool) (string, error) {
 	var t time.Time
 	var err error
 
-	// 尝试不同的日期格式
+	// 获取本地时区
+	loc := time.Local
+
+	// 尝试不同的日期格式，按本地时区解析
 	for _, format := range formats {
-		t, err = time.Parse(format, dateStr)
+		t, err = time.ParseInLocation(format, dateStr, loc)
 		if err == nil {
 			break
 		}
