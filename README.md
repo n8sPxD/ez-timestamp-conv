@@ -3,5 +3,5 @@ A lightweight timestamp converter that seamlessly switches between raw Unix time
 
 # Installing
 ```bash
-$ go install https://github.com/n8sPxD/ez-timestamp-conv/cmd/timeconv@latest
+$ go install github.com/n8sPxD/ez-timestamp-conv/cmd/timeconv@latest
 ```
